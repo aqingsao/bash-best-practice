@@ -12,15 +12,12 @@ declare -r __base="$(basename ${__file} .sh)"
 declare -r __root="$(cd "$(dirname "${__dir}")" && pwd)"
 
 function main(){
-  local array=( "foo" "bar" )
-
-  if [[ " ${array[@]} " =~ " foo " ]]; then
-    echo "contains"
-  else
-  	echo "not contains"
-  fi
+  array=(a b)
+  echo "${array[*]}"
+  unset array[1]
+  echo "${array[*]}"
+  unset array[2]
+  echo "${array[*]}"
 }
+
 main "${@}"
-
-
-
