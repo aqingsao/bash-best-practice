@@ -5,7 +5,7 @@
 了解Bash版本很重，最新的Bash 5已于2019年初发布，但Linux上一般搭载bash 4.X，Mac OS X则由于Bash的License问题，仍停留在古老的3.2.X版本，并转向了Zsh。
 通过`bash --version`快速了解bash版本。
 
-#整体结构
+# 整体结构
 1.【推荐】脚本第一行的shebang，使用#!/usr/bin/env bash 优于 #!/bin/bash
 前者在不同系统上的移植性更好，会从用户定义的PATH中寻找bash解释器。
 
@@ -52,7 +52,7 @@ Shell一般是解释型语言，简单、灵活，提供main函数作为统一�
 	main "${@}"
 ```
 
-# 变量 #
+# 变量
 1. 定义变量时，通过`local`尽量使用本地变量
 示例：
 ```bash
@@ -174,7 +174,8 @@ Bash 4以前，不支持dict功能，也不用使用eval来模拟。
 
 # 已被废弃的用法
 
-# best practice
-
-Best practices:
+# reference
 http://kvz.io/blog/2013/11/21/bash-best-practices/
+https://sap1ens.com/blog/2017/07/01/bash-scripting-best-practices/
+https://github.com/progrium/bashstyle#progriumbashstyle
+https://wiki.bash-hackers.org/scripting/obsolete
