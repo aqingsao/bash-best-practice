@@ -6,21 +6,23 @@
 通过`bash --version`快速了解bash版本。
 
 # 整体结构
-1.【推荐】脚本第一行的shebang，使用#!/usr/bin/env bash 优于 #!/bin/bash
-前者在不同系统上的移植性更好，会从用户定义的PATH中寻找bash解释器。
+1.【推荐】脚本第一行的shebang，使用`#!/usr/bin/env bash` 优于 `#!/bin/bash`
 
-2.【推荐】使用`set -o errexit`、`set -o nounset`
-	`set -o errexit`：确保一个命令失败时，脚本退出。
-  `set -o pipefail`：  # don't hide errors within pipes
+后者写死了bash解释器的路径，而前者会从用户定义的PATH中寻找bash解释器，在不同系统上的移植性更好。
 
-`set -o nounset`：不推荐使用。作用是变量未定义就报错，符合fail fast原则，但bash 3、bash 4存在不兼容问题。Bash 4
+2.【推荐】使用`set`命令进行全局设置，快速失败，提升shell的健壮性。
+
+`set -o errexit`：确保一个命令失败时，脚本退出
+`set -o pipefail`：管道内发生错误是，脚本退出
+`set -o nounset`：不推荐使用。变量未定义就报错，符合fail fast原则，但bash 3、bash 4存在不兼容问题。Bash 4
 ```bash  
-	set -o nounset
-	# var如果未定义，会报错误：@: unbound variable，符合fail-fast原则
-  if [[ ${var} == "hello" ]];then
-  	echo ${var}
-  fi
+set -o nounset
+# var如果未定义，会报错误：@: unbound variable，符合fail-fast原则
+if [[ ${var} == "hello" ]];then
+	echo ${var}
+fi
 ```
+
 3.【推荐】使用几个通用的魔鬼变量
 ```bash
 	// magic variables for current file & dir
@@ -174,7 +176,8 @@ Bash 4以前，不支持dict功能，也不用使用eval来模拟。
 
 # 已被废弃的用法
 
-# reference
+# 参考文档
+Advanced Bash-Scripting Guide
 http://kvz.io/blog/2013/11/21/bash-best-practices/
 https://sap1ens.com/blog/2017/07/01/bash-scripting-best-practices/
 https://github.com/progrium/bashstyle#progriumbashstyle
